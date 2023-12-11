@@ -2,8 +2,7 @@
 layout: home
 search_exclude: true
 ---
-A modified blog for CSA Based on Fastpages- Tirth Thakkar & Haseeb Beg   
 
-
+Trimester 2 Individual - Shaun Li
 
 # Posts

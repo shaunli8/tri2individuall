@@ -4,6 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-A Fastpages clone, for CSA - Tirth Thakkar & Haseeb Beg
+Trimester 2 Individual - Shaun Li
 
 
