@@ -2,7 +2,7 @@ import GameEnv from './GameEnv.js';
 import Character from './Character.js';
 import deathController from './Death.js';
 export class Player extends Character{
-    // constructors sets up Character object 
+    
     constructor(canvas, image, speedRatio, playerData){
         super(canvas, 
             image, 
@@ -10,20 +10,20 @@ export class Player extends Character{
             playerData.width, 
             playerData.height, 
         );
-        // Player Data is required for Animations
+        
         this.playerData = playerData;
 
-        // Player control data
+        
         this.pressedKeys = {};
         this.movement = {left: true, right: true, down: true};
         this.isIdle = true;
-        this.stashKey = "d"; // initial key
+        this.stashKey = "d"; 
 
-        // Store a reference to the event listener function
+        
         this.keydownListener = this.handleKeyDown.bind(this);
         this.keyupListener = this.handleKeyUp.bind(this);
 
-        // Add event listeners
+        
         document.addEventListener('keydown', this.keydownListener);
         document.addEventListener('keyup', this.keyupListener);
 
@@ -232,13 +232,13 @@ export class Player extends Character{
         }
     }
 
-    // Override destroy() method from GameObject to remove event listeners
+    
     destroy() {
-        // Remove event listeners
+        
         document.removeEventListener('keydown', this.keydownListener);
         document.removeEventListener('keyup', this.keyupListener);
 
-        // Call the parent class's destroy method
+        
         super.destroy();
     }
 }
