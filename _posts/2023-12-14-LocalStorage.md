@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Local Storage Table
-description: Local Storage Table
+title: Local Storage
+description: Table to Save Game
 courses: { csse: {week: 14} }
 type: devops
 ---
