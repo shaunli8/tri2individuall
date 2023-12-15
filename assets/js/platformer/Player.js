@@ -1,8 +1,9 @@
 import GameEnv from './GameEnv.js';
 import Character from './Character.js';
-import deathController from './Death.js';
+import GameControl from './GameControl.js'
+
 export class Player extends Character{
-    
+    // constructors sets up Character object 
     constructor(canvas, image, speedRatio, playerData){
         super(canvas, 
             image, 
@@ -10,20 +11,20 @@ export class Player extends Character{
             playerData.width, 
             playerData.height, 
         );
-        
+        // Player Data is required for Animations
         this.playerData = playerData;
 
-        
+        // Player control data
         this.pressedKeys = {};
         this.movement = {left: true, right: true, down: true};
         this.isIdle = true;
-        this.stashKey = "d"; 
+        this.stashKey = "d"; // initial key
 
-        
+        // Store a reference to the event listener function
         this.keydownListener = this.handleKeyDown.bind(this);
         this.keyupListener = this.handleKeyUp.bind(this);
 
-        
+        // Add event listeners
         document.addEventListener('keydown', this.keydownListener);
         document.addEventListener('keyup', this.keyupListener);
 
@@ -65,8 +66,8 @@ export class Player extends Character{
         var result = false;
     
         // verify key is in active animations
-        if (key in this.pressedKeys) {
-            result = (!this.isIdle && (this.topOfPlatform ||this.bottom <= this.y));
+        if (key in this.pressedKeys ) {
+            result = (!this.isIdle && this.bottom <= this.y)||!this.gravityEnabled;
         }
 
         // scene for on top of tube animation
@@ -94,7 +95,7 @@ export class Player extends Character{
         if (this.bottom <= this.y) {
             this.setAnimation(this.stashKey);
         }
-    
+
         return result;
     }
     
@@ -108,9 +109,7 @@ export class Player extends Character{
             if (this.movement.right) this.x += this.speed;  // Move to right
         }
         if (this.isGravityAnimation("w")) {
-            console.log(this.topOfPlatform)
-            if (this.movement.down || this.topOfPlatform) this.y -= (this.bottom * .50);  // jump 22% higher than bottom
-            this.gravityEnabled = true;
+            if (this.movement.down) this.y -= (this.bottom * .4);  // jump 11% higher than bottom
         } 
 
         // Perform super update actions
@@ -130,79 +129,62 @@ export class Player extends Character{
             }
             // Collision with the top of the player
             if (this.collisionData.touchPoints.other.ontop) {
+                this.movement.down = false;
                 this.x = this.collisionData.touchPoints.other.x;
             }
+        } else {
+            // Reset movement flags if not colliding with a tube
+            this.movement.left = true;
+            this.movement.right = true;
+            this.movement.down = true;
         }
-        if (this.collisionData.touchPoints.other.id === "jumpPlatform") {
-            // Collision with the left side of the Tub
-            console.log("id")
+        if (this.collisionData.touchPoints.other.id === "scaffold") {
+            // Collision with the left side of the Platform
             if (this.collisionData.touchPoints.other.left && (this.topOfPlatform === true)) {
                 this.movement.right = false;
-                console.log("a")
             }
-            // Collision with the right side of the Tube
+            // Collision with the right side of the platform
             if (this.collisionData.touchPoints.other.right && (this.topOfPlatform === true)) {
                 this.movement.left = false;
-                console.log("b")
             }
             // Collision with the top of the player
             if (this.collisionData.touchPoints.this.ontop) {
                 this.gravityEnabled = false;
-                console.log("c")
-            }
-            if (this.collisionData.touchPoints.this.bottom) {
-                this.gravityEnabled = false;
-                console.log("d")
+                this.topOfPlatform = true; 
             }
             if (this.collisionData.touchPoints.this.top) {
                 this.gravityEnabled = false;
-                this.topOfPlatform = true; 
-                console.log(this.topOfPlatform + "top")
-                console.log(this.gravityEnabled + "grav")
-                //console.log("e");
             }
-        }
-        else {
-            if (this.collisionData.touchPoints.other.id === "thing2") {
-                // Collision with the left side of the Tub
-                if (this.collisionData.touchPoints.coin.left) {
-                    this.touchCoin = true;
-                    console.log("o")
-                    window.location.reload();
-                }
-                // Collision with the right side of the Tube
-                if (this.collisionData.touchPoints.coin.right) {
-                    console.log("p")
-                    this.touchCoin = true;
-                    window.location.reload();
-                }
-            }    
-
-            // Enemy collision
-            if (this.collisionData.touchPoints.other.id === "enemy") {
-                // Collision with the left side of the Enemy
-                if (this.collisionData.touchPoints.other.left) {
-                     
-                }
-                // Collision with the right side of the Enemy
-                if (this.collisionData.touchPoints.other.right) {
-                    deathController.setDeath(1);
-                    window.location.reload(); // Reload the game to reset it
-                }
-                // Collision with the top of the Enemy
-                if (this.collisionData.touchPoints.other.ontop) {
-                    // Add a bounce effect here
-                    const jumpHeight = 500; // Adjust this value to control the bounce height
-                    this.y -= jumpHeight; // Move the player up by jumpHeight
-                }
-            }
-            
-            // Reset movement flags if not colliding with a tube
+            //if (this.collisionData.touchPoints.this.top) {
+            //    this.gravityEnabled = false;
+            //    
+            //    console.log(this.topOfPlatform + "top")
+            //    console.log(this.gravityEnabled + "grav")
+            //    //console.log("e");
+            //}
+        }else{
             this.topOfPlatform = false;
             this.movement.left = true;
             this.movement.right = true;
             this.movement.down = true;
             this.gravityEnabled = true;
+            
+        }
+
+        if (this.collisionData.touchPoints.other.id === "enemy") {
+            if (this.y >= this.bottom){ //you died
+                //reload current level (death)
+                GameControl.transitionToLevel(GameEnv.levels[GameEnv.levels.indexOf(GameEnv.currentLevel)]);
+            }
+            else{//you kill goomba
+                this.y -= this.bottom*.2;//bounce
+                for(let i = 0; i<GameEnv.gameObjects.length;i++){//loop through current gameObjects
+                    if(GameEnv.gameObjects[i].isGoomba){ //look for object with (isGoomba==true) tag
+                        GameEnv.gameObjects[i].canvas.remove(); //remove goomba sprite from current level
+                        GameEnv.gameObjects.splice(i,1); //remove goomba object from current level
+                    }
+                }
+            }
         }
     }
     
@@ -227,18 +209,18 @@ export class Player extends Character{
                 delete this.pressedKeys[event.key];
             }
             this.setAnimation(key);  
-            // player idle
+            
             this.isIdle = true;     
         }
     }
 
-    
+    // Override destroy() method from GameObject to remove event listeners
     destroy() {
-        
+        // Remove event listeners
         document.removeEventListener('keydown', this.keydownListener);
         document.removeEventListener('keyup', this.keyupListener);
 
-        
+        // Call the parent class's destroy method
         super.destroy();
     }
 }

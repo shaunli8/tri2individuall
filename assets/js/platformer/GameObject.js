@@ -20,7 +20,7 @@ class GameObject {
         this.collisionData = {};
         this.jsonifiedElement = '';
         // Add this object to the game object array so collision can be detected
-        // among other fdafda
+        // among other things
         GameEnv.gameObjects.push(this); 
     }
 
@@ -33,7 +33,7 @@ class GameObject {
     logElement() {
         var jsonifiedElement = this.stringifyElement();
         if (jsonifiedElement !== this.jsonifiedElement) {
-            console.log(jsonifiedElement);
+            //console.log(jsonifiedElement);
             this.jsonifiedElement = jsonifiedElement;
         }
     }
@@ -136,15 +136,15 @@ class GameObject {
         const otherCenterY = (otherRect.top + otherRect.bottom) / 2;
     
         // Calculate hitbox constants
-        const percentage = 0.3; 
+        const percentage = 0.1; 
         const widthReduction = thisRect.width * percentage;
-        const heightReduction = thisRect.height * (percentage - 0.35);
+        const heightReduction = thisRect.height * percentage;
     
         // Build hitbox by subtracting reductions from the left, right, top, and bottom
-        const thisLeft = thisRect.left + widthReduction;
-        const thisTop = thisRect.top + heightReduction;
-        const thisRight = thisRect.right - widthReduction;
-        const thisBottom = thisRect.bottom - heightReduction;
+        const thisLeft = thisRect.left //+ widthReduction;
+        const thisTop = thisRect.top //+ heightReduction;
+        const thisRight = thisRect.right //- widthReduction;
+        const thisBottom = thisRect.bottom //- heightReduction;
     
         // Determine hit and touch points of hit
         this.collisionData = {
@@ -163,15 +163,6 @@ class GameObject {
                     right: thisCenterX < otherCenterX,
                 },
                 other: {
-                    id: other.canvas.id,
-                    top: thisCenterY > otherCenterY,
-                    bottom: thisCenterY < otherCenterY,
-                    left: thisCenterX < otherCenterX,
-                    right: thisCenterX > otherCenterX,
-                    ontop: Math.abs(thisBottom - otherRect.top) <= GameEnv.gravity,
-                    x: otherRect.left
-                },
-                coin: {
                     id: other.canvas.id,
                     top: thisCenterY > otherCenterY,
                     bottom: thisCenterY < otherCenterY,
