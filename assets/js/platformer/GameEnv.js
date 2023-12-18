@@ -17,6 +17,8 @@ export class GameEnv {
     static prevBottom
     static floor;
     static prevFloor;
+    static backgroundSpeed = 0;
+    static backgroundSpeed2 = 0;
     // calculated size properties
     static backgroundHeight = 0;
     static platformHeight = 0;

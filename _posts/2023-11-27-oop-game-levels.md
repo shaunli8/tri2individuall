@@ -251,6 +251,13 @@ image: /images/mario/hills.png
 
   var table = myController.levelTable;
   document.getElementById("mySidebar").append(table);
+
+  var div = myController.speedDiv;
+  document.getElementById("mySidebar").append(div);
+
+  var div2 = myController.grabityDiv;
+  document.getElementById("mySidebar").append(div2);
+  //add gravity later (undefined for now)
   
   // --. .- -- . ... .--. . . -.. / ..-. --- .-. / .... .-- / .... . .-. .
     //for(let i=levels.length-1;i>-1;i-=1){

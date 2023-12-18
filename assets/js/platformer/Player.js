@@ -195,9 +195,15 @@ export class Player extends Character{
             if (!(event.key in this.pressedKeys)) {
                 this.pressedKeys[event.key] = this.playerData[key];
                 this.setAnimation(key);
-                // player active
                 this.isIdle = false;
             }
+            if (key === "a") {
+                GameEnv.backgroundSpeed2 = -0.6;
+            }
+            if (key === "d") {
+                GameEnv.backgroundSpeed2 = 0.6;
+            }
+
         }
     }
 
@@ -206,11 +212,17 @@ export class Player extends Character{
         if (this.playerData.hasOwnProperty(event.key)) {
             const key = event.key;
             if (event.key in this.pressedKeys) {
-                delete this.pressedKeys[event.key];
+                delete this.pressedKeys[event.key]
+            }
+            if (key === "a") {
+                    GameEnv.backgroundSpeed2 = 0;
+            }
+            if (key === "d") {
+                    GameEnv.backgroundSpeed2 = 0;
             }
             this.setAnimation(key);  
             
-            this.isIdle = true;     
+              
         }
     }
 
