@@ -48,7 +48,7 @@ image: /images/mario/hills.png
     from {opacity: 0}
     to {opacity: 1}
   }
-  
+
 </style>
 
 <div id="mySidebar" class="sidenav">
@@ -280,8 +280,6 @@ image: /images/mario/hills.png
   var div = myController.speedDiv;
   document.getElementById("mySidebar").append(div);
 
-  var div2 = myController.grabityDiv;
-  document.getElementById("mySidebar").append(div2);
   //add gravity later (undefined for now)
   
   // --. .- -- . ... .--. . . -.. / ..-. --- .-. / .... .-- / .... . .-. .

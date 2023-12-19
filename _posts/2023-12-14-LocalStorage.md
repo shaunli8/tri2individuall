@@ -10,7 +10,7 @@ type: devops
       <tr id="pasteAfter">
         <th>#</th>
           <th>name</th>
-          <th>age</th>
+          <th>level</th>
       </tr>
       <tr>
         <td><button id="incrementRow">+</button></td>
@@ -96,11 +96,11 @@ type: devops
   if (storageAvailable("localStorage")) {
       storageExists.innerText = "Local Storage Available";
       storageC = true;
-    // Yippee! We can use localStorage awesomeness
+    
   } else {
       storageC = false;
       storageExists.innerText = "Local Storage Not Available";
-    // Too bad, no localStorage for us
+    
   }
   
   function load(){
