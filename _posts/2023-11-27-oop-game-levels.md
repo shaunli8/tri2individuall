@@ -64,6 +64,7 @@ image: /images/mario/hills.png
     <div id="controls"> <!-- Controls -->
         <!-- Background controls -->
         <button id="toggleCanvasEffect">Invert</button>
+        <button id="leaderboardButton">Leaderboard</button>
     </div>
     <div id="settings"> <!-- Controls -->
         <!-- Background controls -->
@@ -72,6 +73,9 @@ image: /images/mario/hills.png
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
+</div>
+<div id="score" style= "position: absolute; top: 75px; left: 10px; color: black; font-size: 20px; background-color: #dddddd; padding-left: 5px; padding-right: 5px;">
+    Time: <span id="timeScore">0</span>
 </div>
 
 <!-- regular game -->
