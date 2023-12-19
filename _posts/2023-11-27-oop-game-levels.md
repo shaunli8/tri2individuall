@@ -24,6 +24,31 @@ image: /images/mario/hills.png
       transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       background-color: black;
     }
+
+      #toggleCanvasEffect, #background, #platform {
+    animation: fadein 5s;
+  }
+
+  #startGame {
+    animation: flash 0.5s infinite;
+  }
+
+  @keyframes flash {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeout {
+    from {opacity: 1}
+    to {opacity: 0}
+  }
+
+  @keyframes fadein {
+    from {opacity: 0}
+    to {opacity: 1}
+  }
+  
 </style>
 
 <div id="mySidebar" class="sidenav">
