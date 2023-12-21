@@ -3,7 +3,7 @@ layout: post
 title: Local Storage
 description: Table to Save Game
 courses: { csse: {week: 14} }
-type: devops
+type: ccc
 ---
 <div>
   <table>

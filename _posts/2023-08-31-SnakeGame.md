@@ -4,12 +4,10 @@ comments: false
 layout: post
 title: Snake Game
 description: My modified snake game. Changed colors and text functions. 
-type: plans
-courses: {compsci: {week: 0} }
+type: ccc
+courses: { csse: {week: 2} }
 categories: [C1.4]
 ---
-
-[Back to Main Home Page](http://0.0.0.0:4200/student/)
 
 <style>
 

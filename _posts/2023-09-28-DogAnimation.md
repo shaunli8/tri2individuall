@@ -4,12 +4,10 @@ comments: false
 layout: post
 title: Dog Animation
 description: Sprite animation tutorial
-type: plans
-courses: {compsci: {week: 0} }
+type: ccc
+courses: { csse: {week: 7} }
 categories: [C1.4]
 ---
-
-[Back to Main Home Page](http://0.0.0.0:4200/student/)
 
 <body>
     <div>

@@ -4,12 +4,10 @@ comments: false
 layout: post
 title: Grade Calculator
 description: 4-group member grade calculator for calculator reivew
-type: plans
-courses: {compsci: {week: 0} }
+type: ccc
+courses: { csse: {week: 5} }
 categories: [C1.4]
 ---
-
-[Back to Main Home Page](http://0.0.0.0:4200/student/)
 
 <!-- Help Message -->
 <h3>Input scores, press tab to add each new number.</h3>

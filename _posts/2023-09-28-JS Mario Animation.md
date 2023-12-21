@@ -4,12 +4,10 @@ comments: false
 layout: post
 title: JS Mario Animation
 description: Mario animation in JS
-type: plans
-courses: {compsci: {week: 0} }
+type: ccc
+courses: { csse: {week: 8} }
 categories: [C1.4]
 ---
-
-[Back to Main Home Page](http://0.0.0.0:4200/student/)
 
 <table>
     <tr>

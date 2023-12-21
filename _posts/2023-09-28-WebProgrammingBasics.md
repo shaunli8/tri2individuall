@@ -4,12 +4,10 @@ comments: false
 layout: post
 title: Web Programming Basics
 description: Web Programming Basics Hacks
-type: plans
-courses: {compsci: {week: 0} }
+type: ccc
+courses: { csse: {week: 10} }
 categories: [C1.4]
 ---
-
-[Back to Main Home Page](http://0.0.0.0:4200/student/)
 
 
 ## HTML Hacks

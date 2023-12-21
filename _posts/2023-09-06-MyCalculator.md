@@ -4,12 +4,10 @@ comments: false
 layout: post
 title: My Calculator
 description: A test calculator. Changed button sizes and fonts. 9/20 - Changed the color of the buttons, added a hover button color change, changed the calculator layout into a table,  added some scientific calculator buttons (trig, exponents, sqrt, logs)
-type: plans
-courses: {compsci: {week: 0} }
+type: ccc
+courses: { csse: {week: 4} }
 categories: [C1.4]
 ---
-
-[Back to Main Home Page](http://0.0.0.0:4200/student/)
 
 <html>
 <head>

@@ -4,12 +4,10 @@ comments: false
 layout: post
 title: Partner Calculator Review
 description: My partner's calculator for the calculator review
-type: plans
-courses: {compsci: {week: 0} }
+type: ccc
+courses: { csse: {week: 6} }
 categories: [C1.4]
 ---
-
-[Back to Main Home Page](http://0.0.0.0:4200/student/)
 
 <head>
     <title>Calculator with Vanta Fog Animation</title>
